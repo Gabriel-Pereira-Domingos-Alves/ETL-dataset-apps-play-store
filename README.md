@@ -16,7 +16,7 @@ Este projeto consiste em um pipeline de ETL (Extract, Transform, Load) que proce
 - **`etl_database.db`**: Banco de dados SQLite gerado durante o processo ETL.
 - **`top_10_weighted_score.png`**: Gráfico dos 10 principais aplicativos com a maior pontuação ponderada (rating x reviews).
 - **`top_10_wd_score.png`**: Gráfico dos 10 principais aplicativos com a maior pontuação ponderada (rating x reviews).
-- **`yop-apps-category.png.png`**: Gráfico dos aplicativos com o maior número de avaliações (reviews).
+- **`yop-apps-category.png`**: Gráfico dos aplicativos com o maior número de avaliações (reviews).
 
 ## Requisitos
 
@@ -48,13 +48,17 @@ Este projeto consiste em um pipeline de ETL (Extract, Transform, Load) que proce
 
 ### Resultados
 Top 10 Aplicativos com Maior Pontuação Ponderada
+![Aplicativos com Maior Pontuação Ponderada](top_10_weighted_score.png)
 Este gráfico mostra os 10 aplicativos com a maior pontuação ponderada, calculada com base na média das notas e na quantidade de avaliações.
 
 
 Top 10 Aplicativos com Mais Avaliações
+![Aplicativos com Maior Pontuação Ponderada](top_10_wd_score.png)
 Este gráfico mostra os 10 aplicativos com o maior número de avaliações.
 
 Top aplicativos por categoria
+![yop-apps-category](yop-apps-category.png)
+
 Este gráfico mostra os top apps de cada categoria
 
 ### Contribuição
