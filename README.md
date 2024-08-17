@@ -53,11 +53,11 @@ Este gráfico mostra os 10 aplicativos com a maior pontuação ponderada, calcul
 
 
 Top 10 Aplicativos com Mais Avaliações
-![Aplicativos com Maior Pontuação Ponderada](top_10_wd_score.png)
-Este gráfico mostra os 10 aplicativos com o maior número de avaliações.
+![Aplicativos com Maior Pontuação Ponderada](category_count.png)
+Este gráfico mostra os aplicativos mais baixados de cada categoria.
 
 Top aplicativos por categoria
-![yop-apps-category](yop-apps-category.png)
+![yop-apps-category](top-apps-category.png)
 
 Este gráfico mostra os top apps de cada categoria
 
