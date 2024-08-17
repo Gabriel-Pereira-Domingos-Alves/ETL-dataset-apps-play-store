@@ -21,30 +21,24 @@ class ETLProcess:
         self.data['Installs'] = self.data['Installs'].replace(r'[+,]', '', regex=True)
         self.data['Installs'] = pd.to_numeric(self.data['Installs'])
         self.data['Category'] = self.data['Category'].str.lower()
-        self.data['Reviews'] = pd.to_numeric(self.data['Reviews'], errors='coerce')  # Converter para numérico
-        self.data['Rating'] = pd.to_numeric(self.data['Rating'], errors='coerce')  # Converter para numérico
+        self.data['Reviews'] = pd.to_numeric(self.data['Reviews'], errors='coerce')
+        self.data['Rating'] = pd.to_numeric(self.data['Rating'], errors='coerce')
         self.data = self.data.dropna(subset=['Reviews', 'Rating'])
     
     def transform(self):
         self.data.to_csv(self.output_df, index=False)
 
     def save_to_db(self):
-        # Se houver um diretório no caminho do banco de dados, cria-o
         dir_name = os.path.dirname(self.db_path)
-        if dir_name:  # Verifica se o caminho inclui um diretório
+        if dir_name:
             os.makedirs(dir_name, exist_ok=True)
         
-        # Conectar ao banco de dados SQLite
         conn = sqlite3.connect(self.db_path)
-        # Salvar o DataFrame no banco de dados
         self.data.to_sql('google_play_apps', conn, if_exists='replace', index=False)
-        # Fechar a conexão
         conn.close()
 
     def calculate_weighted_score(self):
-        # Calcular o total de reviews
         total_reviews = self.data['Reviews'].sum()
-        # Calcular a pontuação ponderada
         self.data['Weighted Score'] = (self.data['Rating'] * self.data['Reviews']) / total_reviews
 
     def visualizeData(self):
@@ -66,15 +60,14 @@ class ETLProcess:
         plt.savefig('top-apps-category.png')
         
         self.calculate_weighted_score()
-        # Salvar o gráfico dos 10 aplicativos com maior pontuação ponderada
         top_weighted_df = self.data.sort_values(by='Weighted Score', ascending=False).head(23)
         plt.figure(figsize=(32, 15))
         sns.barplot(x='Weighted Score', y='App', data=top_weighted_df, palette='viridis')
         plt.title('Top 10 Aplicativos com Maior Pontuação Ponderada')
         plt.xlabel('Pontuação Ponderada')
         plt.ylabel('Nome do Aplicativo')
-        plt.savefig('top_10_weighted_score.png')  # Salvar o gráfico como um arquivo PNG
-        plt.close()  # Fechar a figura para liberar memória
+        plt.savefig('top_10_weighted_score.png') 
+        plt.close() 
 
 if __name__ == "__main__":
     input_df = "datasets/googleplaystore.csv"
